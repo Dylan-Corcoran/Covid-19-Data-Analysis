@@ -160,3 +160,60 @@ WHERE dea.continent != '';
 
 SELECT * 
 FROM percentpopulationvaccinated;
+
+/*
+
+Queries used for Tableau Project
+
+*/
+
+-- 1. 
+-- Returns the total cases, total deaths and, the mortality rate worldwide
+
+Select SUM(new_cases) as total_cases, SUM(new_deaths) as total_deaths, SUM(new_deaths)/SUM(New_Cases)*100 as DeathPercentage
+From PortfolioProject.coviddeaths
+where continent != ''
+-- Group By date
+order by 1,2;
+
+
+-- 2. 
+
+-- Retrieve the total death count, grouped by region
+-- We take these out as they are not inluded in the above queries and want to stay consistent
+
+Select location, SUM(new_deaths) as TotalDeathCount
+From PortfolioProject.coviddeaths
+Where continent = ''
+and location not in ('World', 'European Union', 'International', 'High income', 'Upper middle income', 'Lower middle income', 'Low income')
+Group by location
+order by TotalDeathCount desc;
+
+
+-- 3.
+-- Returns the Population, Highest infections count and the % of the population that have contracted Covid-19
+
+Select Location, Population, MAX(total_cases) as HighestInfectionCount,  MAX((total_cases/population))*100 as PercentPopulationInfected
+From PortfolioProject.coviddeaths
+Group by Location, Population
+order by PercentPopulationInfected desc;
+
+
+-- 4.
+-- Returns the population, highest infection count and the % of the population that have been infected for each day since records began.
+
+Select Location, Population, date, MAX(total_cases) as HighestInfectionCount,  MAX((total_cases/population))*100 as PercentPopulationInfected
+From PortfolioProject.coviddeaths
+Group by Location, Population, date
+order by PercentPopulationInfected desc;
+
+
+
+
+
+
+
+
+
+
+
