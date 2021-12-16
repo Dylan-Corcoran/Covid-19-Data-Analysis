@@ -9,4 +9,4 @@
 - Once each file had been imported corretly, I performed various queries to extract the relevant information. Included in the queries were actions such as
   Joins, CTE's, Temp Tables, Windows Functions, Aggregate Functions, Creating Views, and Converting Data Types.
 
-- Using the results of these queries, a Tableau dashboard was then created. 
+- Using the results of these queries, a Tableau dashboard was then created which can be found here: https://public.tableau.com/app/profile/dylan.corcoran/viz/Covid-19Dashboard_16396905335490/Dashboard1
